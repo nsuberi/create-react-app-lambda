@@ -13,11 +13,14 @@ const mysql = require('serverless-mysql')({
 // Main handler function
 exports.handler = async (event, context) => {
   // Run your query
-  let results = await mysql.query('SELECT * FROM item_info')
+  let results = await mysql.query('SELECT * FROM item_info LIMIT 10')
 
-  console.log(results)
+
   // Run clean up function
   await mysql.end()
+
+  console.log('working')
+  console.log(results)
 
   // Return the results
   return {
