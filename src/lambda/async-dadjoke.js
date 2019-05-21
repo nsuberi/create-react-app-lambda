@@ -15,13 +15,14 @@ exports.handler = async (event, context) => {
   // Run your query
   let results = await mysql.query('SELECT * FROM item_info')
 
+  console.log(results)
   // Run clean up function
   await mysql.end()
 
   // Return the results
   return {
         statusCode: 200,
-        body: results
+        body: JSON.stringify({msg: results})
       }
 }
 
