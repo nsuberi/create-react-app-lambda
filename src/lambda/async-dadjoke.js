@@ -11,7 +11,7 @@ const mysql = require('serverless-mysql')({
 })
 
 // Main handler function
-exports.handler = async (event, context) => {
+exports.handler = async (event, context, callback) => {
   // Run your query
   let results = await mysql.query('SELECT * FROM item_info LIMIT 10')
 
@@ -23,10 +23,10 @@ exports.handler = async (event, context) => {
   console.log(results)
 
   // Return the results
-  return {
+  callback(null, {
         statusCode: 200,
         body: JSON.stringify({msg: results})
-      }
+      });
 }
 
 // import fetch from "node-fetch"
